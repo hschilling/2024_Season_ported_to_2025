@@ -1,8 +1,5 @@
 package frc.robot.subsystems.drive;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.kinematics.SwerveModulePosition;
-
 public interface SwerveModuleIO {
     public static class SwerveModuleIOInputs {
         public double drivePositionMeters = 0.0;

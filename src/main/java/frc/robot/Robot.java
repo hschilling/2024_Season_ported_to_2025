@@ -93,6 +93,7 @@ public class Robot extends TimedRobot {
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
+  @SuppressWarnings("deprecation")
   @Override
   public void disabledInit() {
 
