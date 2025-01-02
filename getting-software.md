@@ -44,6 +44,9 @@ This will let you install these needed libraries:
 ## PathPlanner
 The PathPlanner application is not included with the WPILib installation like the other tools. See https://pathplanner.dev/home.html for information on how to install it.
 
+## Limelight
+Here are instructions on how to "install" Limelight. It's not really a library. Just a file. https://docs.limelightvision.io/docs/docs-limelight/apis/limelight-lib
+
 # Third-party library docs
 - CTRE-Phoenix (v6)
     - https://v6.docs.ctr-electronics.com/en/stable/
