@@ -49,7 +49,6 @@ import frc.robot.Robot;
 import frc.robot.subsystems.gyro.GyroIO;
 // import com.pathplanner.lib.config.PIDConstants;
 
-
 public class DriveSubsystem extends SubsystemBase {
 
   // vision
@@ -70,7 +69,7 @@ public class DriveSubsystem extends SubsystemBase {
   public boolean isAligned = false;
 
   // PID for the speaker-aiming method
-  final double ANGULAR_P = 0.2; 
+  final double ANGULAR_P = 0.2;
   final double ANGULAR_D = 0;
   PIDController keepPointedController = new PIDController(
       ANGULAR_P, 0, ANGULAR_D);
@@ -141,39 +140,39 @@ public class DriveSubsystem extends SubsystemBase {
             frontRight.getPosition(),
             rearLeft.getPosition(),
             rearRight.getPosition() },
-        new Pose2d(0, 0, new Rotation2d(0, 0))); 
+            // new Pose2d(0, 0, new Rotation2d(0, 0)));
+            new Pose2d());
 
-        try{
-          RobotConfig config = RobotConfig.fromGUISettings();
+    try {
+      RobotConfig config = RobotConfig.fromGUISettings();
       PIDConstants translationConstants = new PIDConstants(5.0, 0.0, 0.0);
       PIDConstants rotationConstants = new PIDConstants(5.0, 0.0, 0.0);
       AutoBuilder.configure(
-        this::getPose,
-        this::resetOdometry,
-        this::getRobotRelativeSpeeds,
-        this::setRobotRelativeSpeeds,
-        new PPHolonomicDriveController(
-          translationConstants,
-          rotationConstants
-        ),
-         config,
-        () -> {
-          // Basically flips the path for path planner depending on alliance(Origin is
-          // Blue Alliance)
+          this::getPose,
+          this::resetOdometry,
+          this::getRobotRelativeSpeeds,
+          this::setRobotRelativeSpeeds,
+          new PPHolonomicDriveController(
+              translationConstants,
+              rotationConstants),
+          config,
+          () -> {
+            // Basically flips the path for path planner depending on alliance(Origin is
+            // Blue Alliance)
 
-          var alliance = DriverStation.getAlliance();
+            var alliance = DriverStation.getAlliance();
 
-          if (alliance.isPresent()) {
-            return alliance.get() == DriverStation.Alliance.Red;
-          }
-          return false;
-        },
+            if (alliance.isPresent()) {
+              return alliance.get() == DriverStation.Alliance.Red;
+            }
+            return false;
+          },
 
-        this);
-      }catch(Exception e){
-        DriverStation.reportError("Failed to load PathPlanner config and configure AutoBuilder", e.getStackTrace());
-      }
-  
+          this);
+    } catch (Exception e) {
+      DriverStation.reportError("Failed to load PathPlanner config and configure AutoBuilder", e.getStackTrace());
+    }
+
     configurePathPlannerLogging();
   }
 
